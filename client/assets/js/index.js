@@ -1,22 +1,22 @@
-import { createElement } from './domMethods'
-
+import { createElement } from "./domMethods";
 // Setting up dummy topics data
-let topicData = [{
-  id: 1,
-  name: "Politics"
-},
-{
-  id: 2,
-  name: "Environment"
-},
-{
-  id: 3,
-  name: "Sports"
-},
-{
-  id: 4,
-  name: "Entertainment"
-}
+let topicData = [
+  {
+    id: 1,
+    name: "Politics"
+  },
+  {
+    id: 2,
+    name: "Environment"
+  },
+  {
+    id: 3,
+    name: "Sports"
+  },
+  {
+    id: 4,
+    name: "Entertainment"
+  }
 ];
 
 let lastId = 4;
@@ -48,9 +48,11 @@ function createTopics(topicData) {
 // Return markup for a topic object
 function createTopic({ name, id }) {
   return createElement(
-    "div", { class: "topic" },
+    "div",
+    { class: "topic" },
     createElement(
-      "button", { "aria-label": "Close", "data-id": id, onClick: handleTopicDelete },
+      "button",
+      { "aria-label": "Close", "data-id": id, onClick: handleTopicDelete },
       "×"
     ),
     createElement("a", { href: `topic.html?query=${name}` }, name)
@@ -76,10 +78,7 @@ function handleTopicAdd(event) {
     return;
   }
 
-  topicData = [
-    ...topicData,
-    { id: ++lastId, name: value }
-  ];
+  topicData = [...topicData, { id: ++lastId, name: value }];
 
   input.value = "";
 
@@ -90,6 +89,4 @@ function handleTopicAdd(event) {
 renderTopics();
 
 // Handle new topic submissions
-document
-  .querySelector("#submit-topic")
-  .addEventListener("click", handleTopicAdd);
+document.querySelector("#submit-topic").addEventListener("click", handleTopicAdd);

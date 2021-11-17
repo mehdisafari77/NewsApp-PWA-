@@ -1,43 +1,50 @@
-const WebpackPwaManifest = require("webpack-pwa-manifest");
-const path = require("path");
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const path = require('path');
 
 const config = {
-  mode: "development",
-  // add entry points for JavaScript files for the three pages, home, detail, and favorites.
   entry: {
-    home: "./assets/js/index.js",
-    detail: "./assets/js/topic.js",
-    favorites: "./assets/js/favorites.js"
+    app: './assets/js/index.js',
+    favorites: './assets/js/favorites.js',
+    topic: './assets/js/topic.js',
   },
   output: {
-    path: __dirname + "/client/dist",
-    filename: "[name].bundle.js"
+    path: __dirname + '/dist',
+    filename: '[name].bundle.js',
+  },
+  mode: 'development',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new WebpackPwaManifest({
       fingerprints: false,
-      inject: false,
-      name: "News App",
-      short_name: "News App",
-      description: "An application for news",
-      background_color: "#01579b",
-      theme_color: "#ffffff",
-      start_url: "/",
-    })
+      name: 'Newsy app',
+      short_name: 'Newsy',
+      description: 'An application that allows you to view different news articles and save your favorites.',
+      background_color: '#01579b',
+      theme_color: '#ffffff',
+      'theme-color': '#ffffff',
+      start_url: '/',
+      icons: [
+        {
+          src: path.resolve('assets/images/icons/android-chrome-192x192.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+          destination: path.join('assets', 'icons'),
+        },
+      ],
+    }),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.m?js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env"]
-          }
-        }
-      }
-    ]
-  }
 };
-module.exports = config
+
+module.exports = config;

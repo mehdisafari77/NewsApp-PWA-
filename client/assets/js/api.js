@@ -1,8 +1,9 @@
-import { createArticleIds } from './topic';
+import { createArticleIds, getParams } from "./utils";
 
 // Loads articles
 export function loadArticles() {
-  const BASE_URL = "https://newsapi.org/v2/everything?sortBy=published&apiKey=e41ee36d9a714a199911b42cb75a4fe3&q=";
+  const BASE_URL =
+    "https://newsapi.org/v2/everything?sortBy=published&apiKey=e41ee36d9a714a199911b42cb75a4fe3&q=";
 
   const { query } = getParams();
   return new Promise((resolve, reject) => {
@@ -13,18 +14,4 @@ export function loadArticles() {
         resolve(articles);
       });
   });
-}
-
-
-
-// Return HTML for each article provided
-function createArticles(articleData) {
-  const fragment = document.createDocumentFragment();
-
-  articleData.forEach(data => {
-    const article = createArticle(data);
-    fragment.appendChild(article);
-  });
-
-  return fragment;
 }
