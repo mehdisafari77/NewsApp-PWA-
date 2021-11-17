@@ -1,6 +1,6 @@
 {
   "name": "News App",
-  "version": "14.15.4",
+  "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
@@ -21,6 +21,5 @@
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "nodemon": "^2.0.4"
-  }
+    "nodemon": "^2.0.15"  }
 }
