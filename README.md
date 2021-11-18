@@ -4,9 +4,6 @@ A progressive web app for news
 # Budget-Tracker2
 A budget tracker that can be used as a progressive web app (PWA)
 
-## Deployed Link
-
-
 ## Summary
 A news app that is mobile compatible with progressive web app capabilities. You can add topics that youlike, read news about the articles in that topic, and add them to favorites as well.
 
